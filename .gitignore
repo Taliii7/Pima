@@ -1,0 +1,37 @@
+# --- Environnements Virtuels ---
+
+env/
+venv/
+.env
+anaconda3/
+.conda/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+
+
+# --- Sorties spécifiques ---
+resultat_serveur.png
+
+# --- OS spécifiques  ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# --- IDE (VS Code, PyCharm) ---
+.vscode/
+.idea/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+
+#autres
+cytoDArk0/
+ali_*
