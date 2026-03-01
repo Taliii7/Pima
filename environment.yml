@@ -57,4 +57,4 @@ dependencies:
       - torchvision==0.25.0
       - tqdm==4.67.3
       - typing-extensions==4.15.0
-prefix: /Users/t_ali/miniconda3/envs/pasteur_env
+
