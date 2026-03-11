@@ -73,38 +73,77 @@ def directory_split(base_input_dir = "cytoDArk0",csv_dir ="folds",base_output_di
     print(f"\n Split terminé avec succès ! Les données sont prêtes pour Cellpose dans le dossier {base_output_dir} .")
 
 
+import os
 
-
-def train_val_split(base_dir="cytoDArk_split"):
-    train_images_paths = []
-    train_masks_paths = []
-    val_images_paths = []
-    val_masks_paths = []
-
-    print(f"Exploration du dossier {base_dir} pour trouver les données...")
-
-    # os.walk parcourt absolument tous les sous-dossiers de l'arborescence
-    for root, dirs, files in os.walk(base_dir):
-        folder_name = os.path.basename(root)
-        
-        if folder_name in ['train', 'val']:
-            for f in files:
-                if f.endswith('.png'):
-                    img_path = os.path.join(root, f)
-                    # On va essayer de deviner le nom du masque correspondant
-                    mask_path = os.path.join(root, f.replace('.png', '_masks.tiff'))
-                    
-                    if os.path.exists(mask_path):
-                        if folder_name == 'train':
-                            train_images_paths.append(img_path)
-                            train_masks_paths.append(mask_path)
-                        else: # val
-                            val_images_paths.append(img_path)
-                            val_masks_paths.append(mask_path)
+def train_val_split(base_dir="cytoDArk_split", zoom=0, dim=0):
+    """
+    zoom 0 => all (*20 et *40)
+    zoom 20 => *20
+    zoom 40 => *40
+    sinon on retourne une erreur
     
+    dim  ={0, 256 512 1024 2048}
+    (0 pour all)
+    """
+    # 1. Définition des dossiers cibles selon les paramètres
+    zoom_map = {
+        0: ['20x', '40x'],
+        20: ['20x'],
+        40: ['40x']
+    }
+    
+    dim_map = {
+        0: ['256x256', '512x512', '1024x1024', '2048x2048'],
+        256: ['256x256'],
+        512: ['512x512'],
+        1024: ['1024x1024'],
+        2048: ['2048x2048']
+    }
+
+    # verfications
+    if zoom not in zoom_map:
+        raise ValueError(f"Erreur : le paramètre zoom ({zoom}) doit être 0, 20 ou 40.")
+    if dim not in dim_map:
+        raise ValueError(f"Erreur : le paramètre dim ({dim}) doit être 0, 1, 2, 3 ou 4.")
+
+    train_images_paths, train_masks_paths = [], []
+    val_images_paths, val_masks_paths = [], []
+
+    target_zooms = zoom_map[zoom]
+    target_dims = dim_map[dim]
+
+    print(f"Exploration pour zoom={zoom} et dim={dim}...")
+
+   
+    for z_folder in target_zooms:
+        for d_folder in target_dims:
+            for split in ['train', 'val']:
+                # construction du chemin,  ex: cytoDArk_split/20x/256x256/train
+                split_dir = os.path.join(base_dir, z_folder, d_folder, split)
+                #print("teeeeeeeest : " , split_dir)
+                # On vérifie si ce dossier existe ( 20x n'a pas de 2048x2048 par exemple)
+                if not os.path.exists(split_dir):
+                    continue
+                
+                # On liste les fichiers ici
+                for f in os.listdir(split_dir):
+                    if f.endswith('.png'):
+
+                        img_path = os.path.join(split_dir, f)
+                        mask_path = os.path.join(split_dir, f.replace('.png', '_masks.tiff'))
+                        
+                        # Si le masque correspondant existe, on ajoute aux listes
+                        if os.path.exists(mask_path):
+                            if split == 'train':
+                                train_images_paths.append(img_path)
+                                train_masks_paths.append(mask_path)
+                            elif split == 'val':
+                                val_images_paths.append(img_path)
+                                val_masks_paths.append(mask_path)
+
     return train_images_paths, train_masks_paths, val_images_paths, val_masks_paths
 
 
-
 if __name__ == "__main__":
-    directory_split(base_input_dir = "cytoDArk0",csv_dir ="folds", base_output_dir = "cytoDArk_split")
+    #directory_split(base_input_dir = "cytoDArk0",csv_dir ="folds", base_output_dir = "cytoDArk_split")
+    train_val_split(zoom=40,dim=0)

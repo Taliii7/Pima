@@ -1,7 +1,9 @@
+
+import argparse
 import os
 import torch
 from cellpose import models, io, train
-
+import matplotlib.pyplot as plt
 from cyrk0_split import train_val_split
 
 
@@ -19,13 +21,33 @@ def deviceChoice():
         device = torch.device("cpu")
     return device
 
+def plot(args, train_losses, val_losses):
 
-def run():
+
+    # --- NOUVEAU : SAUVEGARDE DE LA COURBE DE LOSS ---
+    print("Génération de la courbe d'apprentissage...")
+    plt.figure(figsize=(10, 6))
+    
+    # On trace les deux listes (x = numéro de l'époque, y = valeur de l'erreur)
+    plt.plot(train_losses, label='Train Loss (Apprentissage)', color='blue', linewidth=2)
+    plt.plot(val_losses, label='Validation Loss (Examen blanc)', color='orange', linewidth=2)
+    
+    plt.title(f"Courbe d'entraînement : {args.output_name}")
+    plt.xlabel('Époques')
+    plt.ylabel('Loss (Erreur)')
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # On sauvegarde l'image au même endroit que le script
+    nom_image = f"Loss_curve_{args.output_name}.png"
+    plt.savefig(nom_image, dpi=300, bbox_inches='tight')
+    print(f"Super ! Courbe sauvegardée sous : {nom_image}")
+def run(args):
 
     io.logger_setup()
     device = deviceChoice()
 
-    train_images_paths, train_masks_paths, val_images_paths, val_masks_paths= train_val_split(base_dir="cytoDArk_split")
+    train_images_paths, train_masks_paths, val_images_paths, val_masks_paths= train_val_split(base_dir=args.base_dir,zoom=args.zoom, dim = args.dim)
 
 
     print(f"Images trouvées -> Train : {len(train_images_paths)} | Test : {len(val_images_paths)}")
@@ -42,11 +64,11 @@ def run():
     # configs
     model = models.CellposeModel(gpu=True, device=device)
 
-    model_name = "cellpose_dauphin_complet"
-    n_epochs = 30   
-    learning_rate = 1e-5 
-    weight_decay = 0.1
-    batch_size = 4   # bon c'est peut être un peu trop, si on a une erreur memoire à l'entrainement faudra baisser ça à 2 voir 1 qui sait     
+    model_name = args.output_name
+    n_epochs = args.epochs
+    learning_rate = args.lr
+    weight_decay = args.wd
+    batch_size = args.batch_size  
 
     print("Début de l'entraînement global...")
     new_model_path, train_losses, val_losses = train.train_seg(
@@ -65,8 +87,34 @@ def run():
     return new_model_path, train_losses, val_losses
 
 
-if __name__=="__main__":
-    new_model_path, train_losses, test_losses = run()
+def main():
+    parser = argparse.ArgumentParser(description="Script pour diviser le dataset cytoDArk")
+
+    #entrée / sortie
+    parser.add_argument("--base_dir", type=str, default="cytoDArk_split", help="Le dossier racine")
+    parser.add_argument("--output_name", type=str, default="cellpose_dauphin_complet", help="Le nom de fichier de sortie")
+
+    # Sur quoi on veut entrainer le modele 
+    parser.add_argument("--zoom", type=int, default=0, help="Le zoom (0=all, 20=20x, 40=40x)")
+    parser.add_argument("--dim", type=int, default=0, help="La dimension (0=all, 1=256, blablabl)")
+    #les paramètres du modèle 
+    parser.add_argument("--lr", type=float, default=1e-5, help="Learning rate")
+    parser.add_argument("--wd", type=float, default=0.1, help="weight_decay")
+    parser.add_argument("--batch_size", type=int, default=4, help="LLe nombre de batchs")
+    parser.add_argument("--epochs", type=int, default=30, help="Le nombre d'époques")
+
+
+    args = parser.parse_args()
+
+    new_model_path, train_losses, val_losses = run(args)
     print(f"Entraînement terminé ! Modèle sauvegardé ici : {new_model_path}")
+
+    plot(args,train_losses=train_losses,val_losses=val_losses)
+
+
+
+if __name__=="__main__":
+    main()
+   
 
 
