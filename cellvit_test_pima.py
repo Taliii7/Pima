@@ -6,6 +6,7 @@ import torchvision.transforms as T
 import tifffile
 from sklearn.metrics import  precision_score, recall_score, f1_score, jaccard_score
 import os
+import numpy as np
 
 def load_normalize_x(img_path, device):
     
@@ -19,7 +20,7 @@ def load_normalize_x(img_path, device):
 
     return img_tensor
 
-def load_model(checkpoint_path)
+def load_model(checkpoint_path):
     
     #checkpoint_path = "CellViT-SAM-H-x40-AMP.pth"
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
@@ -40,9 +41,9 @@ def load_model(checkpoint_path)
     
 def test_model(model, device, x_folder, y_folder, mag, threshold):
 
-    maps = inference_on_x(model, x, mag)
+    # maps = inference_on_x(model, x, mag)
     x_paths = sorted([os.path.join(x_folder, f) for f in os.listdir(x_folder) if f.endswith('.png')])
-    
+
     TP = []
     #TN = []
     #FP = []
@@ -53,9 +54,10 @@ def test_model(model, device, x_folder, y_folder, mag, threshold):
         with torch.no_grad():
             outputs = model(img_tensor)
             instance_map, _ = model.calculate_instance_map(outputs, magnification=mag)
-            pred_mask = (instance_map[0] > 0).astype(np.uint8)
+            pred_mask = (instance_map[0] > 0).to(dtype=torch.int8)
 
         y_path = p.replace('.png', '_masks.tiff')
+        # y_path = y_path.replace('image', 'label')
         if os.path.exists(y_path):
             mask = (tifffile.imread(y_path) > 0).astype(np.uint8)
         else:
@@ -74,21 +76,24 @@ def test_model(model, device, x_folder, y_folder, mag, threshold):
         
         if IoU >= threshold:
             TP.append(IoU)
-        print(f"Done  for image : {p}")
+        print(f"Done  for image : {p} IoU : {IoU}")
     print("All done")
     return TP
     
 def main():
     
-    checkpoint_path = "CellViT-SAM-H-x40-AMP.pth"
-    x_folder = ""
-    y_folder = ""
+    checkpoint_path = "../CellViT-SAM-H-x40-AMP.pth"
+    x_folder = "../cytoDArk_split/20x/256x256/test"
+    y_folder = "../cytoDArk_split/20x/256x256/test"
     mag = 20
     threshold = 0.6
     
     model, device = load_model(checkpoint_path)
     TPs = test_model(model, device, x_folder, y_folder, mag, threshold)
 
+    print(f"Number of TP with treshold {threshold} : {len(TPs)}")
+    print(f"Average IoU : {np.array(TPs).mean()}")
+    
 if __name__ == "__main__":
 
     main()
