@@ -14,6 +14,11 @@ __pycache__/
 .Python
 
 
+#modeles
+
+cellpose-sam/models/
+vista2d/models/
+
 
 # --- Sorties spécifiques ---
 resultat_serveur.png
@@ -34,4 +39,4 @@ Icon
 
 #autres
 cytoDArk0/
-ali_*
+cytoDArk_split/
