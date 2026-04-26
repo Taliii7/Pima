@@ -2,827 +2,827 @@
   "training": [
     {
       "image": "train/images/training_set_metastatic_roi_001.tif",
-      "label": "train/masks/training_set_metastatic_roi_001_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_001_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_003.tif",
-      "label": "train/masks/training_set_metastatic_roi_003_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_003_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_004.tif",
-      "label": "train/masks/training_set_metastatic_roi_004_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_004_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_005.tif",
-      "label": "train/masks/training_set_metastatic_roi_005_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_005_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_006.tif",
-      "label": "train/masks/training_set_metastatic_roi_006_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_006_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_010.tif",
-      "label": "train/masks/training_set_metastatic_roi_010_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_010_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_011.tif",
-      "label": "train/masks/training_set_metastatic_roi_011_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_011_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_013.tif",
-      "label": "train/masks/training_set_metastatic_roi_013_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_013_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_014.tif",
-      "label": "train/masks/training_set_metastatic_roi_014_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_014_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_015.tif",
-      "label": "train/masks/training_set_metastatic_roi_015_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_015_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_016.tif",
-      "label": "train/masks/training_set_metastatic_roi_016_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_016_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_017.tif",
-      "label": "train/masks/training_set_metastatic_roi_017_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_017_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_018.tif",
-      "label": "train/masks/training_set_metastatic_roi_018_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_018_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_019.tif",
-      "label": "train/masks/training_set_metastatic_roi_019_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_019_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_020.tif",
-      "label": "train/masks/training_set_metastatic_roi_020_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_020_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_021.tif",
-      "label": "train/masks/training_set_metastatic_roi_021_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_021_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_022.tif",
-      "label": "train/masks/training_set_metastatic_roi_022_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_022_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_026.tif",
-      "label": "train/masks/training_set_metastatic_roi_026_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_026_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_028.tif",
-      "label": "train/masks/training_set_metastatic_roi_028_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_028_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_030.tif",
-      "label": "train/masks/training_set_metastatic_roi_030_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_030_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_031.tif",
-      "label": "train/masks/training_set_metastatic_roi_031_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_031_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_032.tif",
-      "label": "train/masks/training_set_metastatic_roi_032_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_032_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_033.tif",
-      "label": "train/masks/training_set_metastatic_roi_033_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_033_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_034.tif",
-      "label": "train/masks/training_set_metastatic_roi_034_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_034_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_035.tif",
-      "label": "train/masks/training_set_metastatic_roi_035_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_035_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_037.tif",
-      "label": "train/masks/training_set_metastatic_roi_037_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_037_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_038.tif",
-      "label": "train/masks/training_set_metastatic_roi_038_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_038_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_039.tif",
-      "label": "train/masks/training_set_metastatic_roi_039_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_039_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_042.tif",
-      "label": "train/masks/training_set_metastatic_roi_042_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_042_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_043.tif",
-      "label": "train/masks/training_set_metastatic_roi_043_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_043_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_044.tif",
-      "label": "train/masks/training_set_metastatic_roi_044_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_044_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_045.tif",
-      "label": "train/masks/training_set_metastatic_roi_045_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_045_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_046.tif",
-      "label": "train/masks/training_set_metastatic_roi_046_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_046_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_047.tif",
-      "label": "train/masks/training_set_metastatic_roi_047_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_047_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_048.tif",
-      "label": "train/masks/training_set_metastatic_roi_048_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_048_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_049.tif",
-      "label": "train/masks/training_set_metastatic_roi_049_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_049_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_050.tif",
-      "label": "train/masks/training_set_metastatic_roi_050_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_050_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_052.tif",
-      "label": "train/masks/training_set_metastatic_roi_052_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_052_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_053.tif",
-      "label": "train/masks/training_set_metastatic_roi_053_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_053_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_054.tif",
-      "label": "train/masks/training_set_metastatic_roi_054_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_054_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_055.tif",
-      "label": "train/masks/training_set_metastatic_roi_055_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_055_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_059.tif",
-      "label": "train/masks/training_set_metastatic_roi_059_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_059_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_061.tif",
-      "label": "train/masks/training_set_metastatic_roi_061_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_061_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_062.tif",
-      "label": "train/masks/training_set_metastatic_roi_062_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_062_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_064.tif",
-      "label": "train/masks/training_set_metastatic_roi_064_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_064_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_065.tif",
-      "label": "train/masks/training_set_metastatic_roi_065_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_065_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_066.tif",
-      "label": "train/masks/training_set_metastatic_roi_066_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_066_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_067.tif",
-      "label": "train/masks/training_set_metastatic_roi_067_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_067_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_069.tif",
-      "label": "train/masks/training_set_metastatic_roi_069_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_069_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_070.tif",
-      "label": "train/masks/training_set_metastatic_roi_070_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_070_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_073.tif",
-      "label": "train/masks/training_set_metastatic_roi_073_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_073_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_074.tif",
-      "label": "train/masks/training_set_metastatic_roi_074_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_074_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_075.tif",
-      "label": "train/masks/training_set_metastatic_roi_075_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_075_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_076.tif",
-      "label": "train/masks/training_set_metastatic_roi_076_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_076_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_077.tif",
-      "label": "train/masks/training_set_metastatic_roi_077_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_077_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_078.tif",
-      "label": "train/masks/training_set_metastatic_roi_078_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_078_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_079.tif",
-      "label": "train/masks/training_set_metastatic_roi_079_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_079_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_080.tif",
-      "label": "train/masks/training_set_metastatic_roi_080_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_080_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_081.tif",
-      "label": "train/masks/training_set_metastatic_roi_081_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_081_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_082.tif",
-      "label": "train/masks/training_set_metastatic_roi_082_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_082_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_083.tif",
-      "label": "train/masks/training_set_metastatic_roi_083_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_083_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_084.tif",
-      "label": "train/masks/training_set_metastatic_roi_084_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_084_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_085.tif",
-      "label": "train/masks/training_set_metastatic_roi_085_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_085_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_086.tif",
-      "label": "train/masks/training_set_metastatic_roi_086_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_086_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_090.tif",
-      "label": "train/masks/training_set_metastatic_roi_090_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_090_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_091.tif",
-      "label": "train/masks/training_set_metastatic_roi_091_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_091_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_093.tif",
-      "label": "train/masks/training_set_metastatic_roi_093_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_093_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_094.tif",
-      "label": "train/masks/training_set_metastatic_roi_094_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_094_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_095.tif",
-      "label": "train/masks/training_set_metastatic_roi_095_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_095_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_096.tif",
-      "label": "train/masks/training_set_metastatic_roi_096_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_096_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_097.tif",
-      "label": "train/masks/training_set_metastatic_roi_097_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_097_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_099.tif",
-      "label": "train/masks/training_set_metastatic_roi_099_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_099_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_100.tif",
-      "label": "train/masks/training_set_metastatic_roi_100_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_100_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_101.tif",
-      "label": "train/masks/training_set_metastatic_roi_101_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_101_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_metastatic_roi_102.tif",
-      "label": "train/masks/training_set_metastatic_roi_102_nuclei_mask.png"
+      "label": "train/masks/training_set_metastatic_roi_102_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_001.tif",
-      "label": "train/masks/training_set_primary_roi_001_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_001_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_002.tif",
-      "label": "train/masks/training_set_primary_roi_002_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_002_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_003.tif",
-      "label": "train/masks/training_set_primary_roi_003_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_003_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_004.tif",
-      "label": "train/masks/training_set_primary_roi_004_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_004_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_005.tif",
-      "label": "train/masks/training_set_primary_roi_005_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_005_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_008.tif",
-      "label": "train/masks/training_set_primary_roi_008_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_008_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_009.tif",
-      "label": "train/masks/training_set_primary_roi_009_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_009_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_010.tif",
-      "label": "train/masks/training_set_primary_roi_010_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_010_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_011.tif",
-      "label": "train/masks/training_set_primary_roi_011_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_011_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_012.tif",
-      "label": "train/masks/training_set_primary_roi_012_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_012_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_014.tif",
-      "label": "train/masks/training_set_primary_roi_014_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_014_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_015.tif",
-      "label": "train/masks/training_set_primary_roi_015_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_015_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_017.tif",
-      "label": "train/masks/training_set_primary_roi_017_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_017_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_018.tif",
-      "label": "train/masks/training_set_primary_roi_018_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_018_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_019.tif",
-      "label": "train/masks/training_set_primary_roi_019_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_019_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_020.tif",
-      "label": "train/masks/training_set_primary_roi_020_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_020_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_021.tif",
-      "label": "train/masks/training_set_primary_roi_021_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_021_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_022.tif",
-      "label": "train/masks/training_set_primary_roi_022_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_022_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_023.tif",
-      "label": "train/masks/training_set_primary_roi_023_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_023_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_024.tif",
-      "label": "train/masks/training_set_primary_roi_024_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_024_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_025.tif",
-      "label": "train/masks/training_set_primary_roi_025_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_025_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_026.tif",
-      "label": "train/masks/training_set_primary_roi_026_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_026_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_027.tif",
-      "label": "train/masks/training_set_primary_roi_027_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_027_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_029.tif",
-      "label": "train/masks/training_set_primary_roi_029_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_029_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_030.tif",
-      "label": "train/masks/training_set_primary_roi_030_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_030_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_031.tif",
-      "label": "train/masks/training_set_primary_roi_031_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_031_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_032.tif",
-      "label": "train/masks/training_set_primary_roi_032_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_032_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_033.tif",
-      "label": "train/masks/training_set_primary_roi_033_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_033_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_034.tif",
-      "label": "train/masks/training_set_primary_roi_034_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_034_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_035.tif",
-      "label": "train/masks/training_set_primary_roi_035_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_035_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_037.tif",
-      "label": "train/masks/training_set_primary_roi_037_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_037_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_039.tif",
-      "label": "train/masks/training_set_primary_roi_039_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_039_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_040.tif",
-      "label": "train/masks/training_set_primary_roi_040_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_040_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_041.tif",
-      "label": "train/masks/training_set_primary_roi_041_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_041_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_043.tif",
-      "label": "train/masks/training_set_primary_roi_043_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_043_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_044.tif",
-      "label": "train/masks/training_set_primary_roi_044_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_044_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_045.tif",
-      "label": "train/masks/training_set_primary_roi_045_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_045_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_046.tif",
-      "label": "train/masks/training_set_primary_roi_046_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_046_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_047.tif",
-      "label": "train/masks/training_set_primary_roi_047_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_047_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_048.tif",
-      "label": "train/masks/training_set_primary_roi_048_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_048_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_051.tif",
-      "label": "train/masks/training_set_primary_roi_051_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_051_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_052.tif",
-      "label": "train/masks/training_set_primary_roi_052_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_052_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_054.tif",
-      "label": "train/masks/training_set_primary_roi_054_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_054_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_055.tif",
-      "label": "train/masks/training_set_primary_roi_055_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_055_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_056.tif",
-      "label": "train/masks/training_set_primary_roi_056_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_056_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_057.tif",
-      "label": "train/masks/training_set_primary_roi_057_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_057_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_058.tif",
-      "label": "train/masks/training_set_primary_roi_058_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_058_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_059.tif",
-      "label": "train/masks/training_set_primary_roi_059_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_059_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_060.tif",
-      "label": "train/masks/training_set_primary_roi_060_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_060_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_061.tif",
-      "label": "train/masks/training_set_primary_roi_061_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_061_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_063.tif",
-      "label": "train/masks/training_set_primary_roi_063_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_063_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_064.tif",
-      "label": "train/masks/training_set_primary_roi_064_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_064_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_066.tif",
-      "label": "train/masks/training_set_primary_roi_066_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_066_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_067.tif",
-      "label": "train/masks/training_set_primary_roi_067_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_067_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_068.tif",
-      "label": "train/masks/training_set_primary_roi_068_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_068_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_069.tif",
-      "label": "train/masks/training_set_primary_roi_069_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_069_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_070.tif",
-      "label": "train/masks/training_set_primary_roi_070_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_070_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_073.tif",
-      "label": "train/masks/training_set_primary_roi_073_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_073_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_074.tif",
-      "label": "train/masks/training_set_primary_roi_074_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_074_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_075.tif",
-      "label": "train/masks/training_set_primary_roi_075_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_075_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_076.tif",
-      "label": "train/masks/training_set_primary_roi_076_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_076_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_077.tif",
-      "label": "train/masks/training_set_primary_roi_077_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_077_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_078.tif",
-      "label": "train/masks/training_set_primary_roi_078_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_078_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_079.tif",
-      "label": "train/masks/training_set_primary_roi_079_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_079_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_080.tif",
-      "label": "train/masks/training_set_primary_roi_080_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_080_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_082.tif",
-      "label": "train/masks/training_set_primary_roi_082_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_082_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_083.tif",
-      "label": "train/masks/training_set_primary_roi_083_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_083_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_086.tif",
-      "label": "train/masks/training_set_primary_roi_086_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_086_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_089.tif",
-      "label": "train/masks/training_set_primary_roi_089_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_089_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_090.tif",
-      "label": "train/masks/training_set_primary_roi_090_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_090_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_093.tif",
-      "label": "train/masks/training_set_primary_roi_093_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_093_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_095.tif",
-      "label": "train/masks/training_set_primary_roi_095_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_095_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_096.tif",
-      "label": "train/masks/training_set_primary_roi_096_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_096_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_097.tif",
-      "label": "train/masks/training_set_primary_roi_097_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_097_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_098.tif",
-      "label": "train/masks/training_set_primary_roi_098_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_098_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_099.tif",
-      "label": "train/masks/training_set_primary_roi_099_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_099_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_102.tif",
-      "label": "train/masks/training_set_primary_roi_102_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_102_nuclei_mask.tiff"
     },
     {
       "image": "train/images/training_set_primary_roi_103.tif",
-      "label": "train/masks/training_set_primary_roi_103_nuclei_mask.png"
+      "label": "train/masks/training_set_primary_roi_103_nuclei_mask.tiff"
     }
   ],
   "validation": [
     {
       "image": "val/images/training_set_metastatic_roi_002.tif",
-      "label": "val/masks/training_set_metastatic_roi_002_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_002_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_012.tif",
-      "label": "val/masks/training_set_metastatic_roi_012_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_012_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_025.tif",
-      "label": "val/masks/training_set_metastatic_roi_025_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_025_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_040.tif",
-      "label": "val/masks/training_set_metastatic_roi_040_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_040_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_041.tif",
-      "label": "val/masks/training_set_metastatic_roi_041_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_041_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_051.tif",
-      "label": "val/masks/training_set_metastatic_roi_051_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_051_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_057.tif",
-      "label": "val/masks/training_set_metastatic_roi_057_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_057_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_068.tif",
-      "label": "val/masks/training_set_metastatic_roi_068_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_068_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_072.tif",
-      "label": "val/masks/training_set_metastatic_roi_072_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_072_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_087.tif",
-      "label": "val/masks/training_set_metastatic_roi_087_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_087_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_088.tif",
-      "label": "val/masks/training_set_metastatic_roi_088_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_088_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_089.tif",
-      "label": "val/masks/training_set_metastatic_roi_089_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_089_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_092.tif",
-      "label": "val/masks/training_set_metastatic_roi_092_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_092_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_metastatic_roi_098.tif",
-      "label": "val/masks/training_set_metastatic_roi_098_nuclei_mask.png"
+      "label": "val/masks/training_set_metastatic_roi_098_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_006.tif",
-      "label": "val/masks/training_set_primary_roi_006_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_006_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_013.tif",
-      "label": "val/masks/training_set_primary_roi_013_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_013_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_016.tif",
-      "label": "val/masks/training_set_primary_roi_016_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_016_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_036.tif",
-      "label": "val/masks/training_set_primary_roi_036_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_036_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_042.tif",
-      "label": "val/masks/training_set_primary_roi_042_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_042_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_049.tif",
-      "label": "val/masks/training_set_primary_roi_049_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_049_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_053.tif",
-      "label": "val/masks/training_set_primary_roi_053_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_053_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_065.tif",
-      "label": "val/masks/training_set_primary_roi_065_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_065_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_071.tif",
-      "label": "val/masks/training_set_primary_roi_071_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_071_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_081.tif",
-      "label": "val/masks/training_set_primary_roi_081_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_081_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_084.tif",
-      "label": "val/masks/training_set_primary_roi_084_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_084_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_085.tif",
-      "label": "val/masks/training_set_primary_roi_085_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_085_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_091.tif",
-      "label": "val/masks/training_set_primary_roi_091_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_091_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_092.tif",
-      "label": "val/masks/training_set_primary_roi_092_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_092_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_094.tif",
-      "label": "val/masks/training_set_primary_roi_094_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_094_nuclei_mask.tiff"
     },
     {
       "image": "val/images/training_set_primary_roi_101.tif",
-      "label": "val/masks/training_set_primary_roi_101_nuclei_mask.png"
+      "label": "val/masks/training_set_primary_roi_101_nuclei_mask.tiff"
     }
   ],
   "testing": [
     {
       "image": "test/images/training_set_metastatic_roi_007.tif",
-      "label": "test/masks/training_set_metastatic_roi_007_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_007_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_008.tif",
-      "label": "test/masks/training_set_metastatic_roi_008_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_008_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_009.tif",
-      "label": "test/masks/training_set_metastatic_roi_009_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_009_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_023.tif",
-      "label": "test/masks/training_set_metastatic_roi_023_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_023_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_024.tif",
-      "label": "test/masks/training_set_metastatic_roi_024_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_024_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_027.tif",
-      "label": "test/masks/training_set_metastatic_roi_027_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_027_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_029.tif",
-      "label": "test/masks/training_set_metastatic_roi_029_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_029_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_036.tif",
-      "label": "test/masks/training_set_metastatic_roi_036_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_036_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_056.tif",
-      "label": "test/masks/training_set_metastatic_roi_056_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_056_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_058.tif",
-      "label": "test/masks/training_set_metastatic_roi_058_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_058_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_060.tif",
-      "label": "test/masks/training_set_metastatic_roi_060_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_060_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_063.tif",
-      "label": "test/masks/training_set_metastatic_roi_063_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_063_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_metastatic_roi_071.tif",
-      "label": "test/masks/training_set_metastatic_roi_071_nuclei_mask.png"
+      "label": "test/masks/training_set_metastatic_roi_071_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_007.tif",
-      "label": "test/masks/training_set_primary_roi_007_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_007_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_028.tif",
-      "label": "test/masks/training_set_primary_roi_028_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_028_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_038.tif",
-      "label": "test/masks/training_set_primary_roi_038_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_038_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_050.tif",
-      "label": "test/masks/training_set_primary_roi_050_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_050_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_062.tif",
-      "label": "test/masks/training_set_primary_roi_062_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_062_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_072.tif",
-      "label": "test/masks/training_set_primary_roi_072_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_072_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_087.tif",
-      "label": "test/masks/training_set_primary_roi_087_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_087_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_088.tif",
-      "label": "test/masks/training_set_primary_roi_088_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_088_nuclei_mask.tiff"
     },
     {
       "image": "test/images/training_set_primary_roi_100.tif",
-      "label": "test/masks/training_set_primary_roi_100_nuclei_mask.png"
+      "label": "test/masks/training_set_primary_roi_100_nuclei_mask.tiff"
     }
   ]
 }
