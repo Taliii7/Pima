@@ -1,0 +1,5 @@
+Famille,Modele,Zoom,Dimension,IoU_Seuil,Nb_Images,SQ,DQ,PQ,TP,FP,FN,Precision,Recall,F1_Score
+Cellpose-SAM,Cellpose_Baseline,puma,1024,0.5,22,81.73,86.94,71.26,8120,823,1464,90.8,84.72,87.66
+Cellpose-SAM,Cellpose_FT_PUMA,puma,1024,0.5,22,86.38,91.71,79.36,8852,766,732,92.04,92.36,92.2
+VISTA-2D,Vista_Baseline,puma,1024,0.5,22,79.04,63.11,50.28,5523,627,4061,89.8,57.63,70.2
+VISTA-2D,Vista_FT_PUMA,puma,1024,0.5,22,85.1,91.0,77.55,8909,1027,675,89.66,92.96,91.28

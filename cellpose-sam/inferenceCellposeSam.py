@@ -6,7 +6,14 @@ from cellpose import models, io, plot, metrics
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from eval_cellposeSam import evaluate_single_image
 
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+common_path = os.path.join(current_dir, '..', 'common')
+
+if common_path not in sys.path:
+    sys.path.append(common_path)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from sklearn.metrics import  precision_score, recall_score, f1_score, jaccard_score
@@ -60,7 +67,9 @@ def SegmentOneImage(chemin_image,device,model_path=None):
 
     # sauvegarde le résultat
     fig = plt.figure(figsize=(12, 5))
-    plot.show_segmentation(fig, img, masks, flows[0])
+    img_rgb = img[:, :, :3]
+    print(img_rgb.shape," ",img_rgb[-1].shape," ", img_rgb.shape[-1])
+    plot.show_segmentation(fig, img_rgb, masks, flows[0])
     plt.tight_layout()
     plt.savefig("resultat_serveur.png", dpi=300)
     print("Image sauvegardée sous 'resultat_serveur.png'")
@@ -71,7 +80,8 @@ def SegmentOneImage(chemin_image,device,model_path=None):
 def showResult(img,masks,flows,output_name="resultat_serveur.png"):
 
     fig = plt.figure(figsize=(12, 5))
-    plot.show_segmentation(fig, img, masks, flows[0])
+    img_plot = img[:, :, :3] if img.ndim == 3 and img.shape[-1] > 3 else img
+    plot.show_segmentation(fig, img_plot, masks, flows[0])
     plt.tight_layout()
     plt.savefig(output_name, dpi=300)
     print(f"Image sauvegardée sous '{output_name}'")
@@ -91,6 +101,9 @@ def evaluate_segmentation(masks, chemin_gt,baseline_black=False):
     #Cellpose renvoie des masques d'instances (1, 2, 3... pour chaque cellule), en gros la premiere cellule a que des 1 en pixel, la 2eme que des 2 etc...
     #Pour comparer  pixel par pixel, on binarise : 
     #Tout ce qui est > 0 est une cellule (True), le reste non 
+    if len(gt_image.shape) > 2:
+        gt_image = gt_image[:, :, 0] 
+    # ----------------------
     pred_binary = masks > 0
     gt_binary = gt_image > 0
 
@@ -143,16 +156,10 @@ def print_coco_metrics(tp, fp, fn, seuils):
         print(f"Rappel    : {recall*100:.2f}%")
         print(f"F1-Score  : {f1_score*100:.2f}%")
 
-def EvaluateFolder(dossier_test, device, model_path=None):
 
-    print(f"\n=== Lancement de l'évaluation sur le dossier : {dossier_test} ===")
-    
-    chemins_images = sorted([os.path.join(dossier_test, f) for f in os.listdir(dossier_test) if f.endswith('.png')])
-    chemins_labels = [p.replace('.png', '_masks.tiff') for p in chemins_images]
-    
-    # Chargement en mémoire
-    test_data = [getImage(p) for p in chemins_images]
-    test_labels = [getImage(p) for p in chemins_labels]
+def test (image_path,label_path,device, gpu=True, model_path=None):
+    test_data =getImage(image_path)
+    test_labels =getImage(label_path)
     
     # modeele
     if model_path:
@@ -160,7 +167,7 @@ def EvaluateFolder(dossier_test, device, model_path=None):
     else:
         model = models.CellposeModel(gpu=True, device=device)
         
-    print(f"Prédiction en lot sur {len(test_data)} images en cours...")
+    print(f"Prédiction  sur {image_path} images en cours...")
     masks_pred, flows, styles = model.eval(test_data, diameter=None)
     
     # les metrics de cellpose 
@@ -194,16 +201,20 @@ def main():
     
     if (args.image and args.gt):
         print("\n--- TEST VISUEL SUR UNE IMAGE ---")
-
+        
         chemin_image = args.image
         chemin_gt=args.gt
+        """"
         masks, flows, styles= SegmentOneImage(chemin_image, device=device, model_path=modele_perso)
         img= getImage(chemin_image)
         print("\n--- ÉVALUATION chiffré ---")
         evaluate_segmentation(masks,chemin_gt=chemin_gt,baseline_black=True )
-        showResult(img,masks,flows) 
-        # On sauvegarde le résultat
+        # save (visuellement)
         showResult(img, masks, flows, output_name=args.output_name)
+        """
+        #test(chemin_image,chemin_image,device=device,model_path=None)
+        evaluate_single_image(chemin_image,chemin_gt,model_path=modele_perso,iou_threshold=0.5 )
+
     elif (args.base_dir): 
         print("\n--- Analyse performance du model sur un dataset ---")
 

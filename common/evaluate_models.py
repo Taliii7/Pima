@@ -63,9 +63,10 @@ def get_dice_1(true, pred):
     inter = true * pred
     denom = true + pred
     return float(2.0 * np.sum(inter) / (np.sum(denom) + 1.0e-6))
+"""
 
 def get_pq(true, pred, match_iou=0.5, remap=True):
-    """Get the panoptic quality result.
+    \"""Get the panoptic quality result.
 
     Fast computation requires instance IDs are in contiguous orderding i.e [1, 2, 3, 4]
     not [2, 3, 6, 10]. Please call `remap_label` beforehand. Here, the `by_size` flag
@@ -92,7 +93,7 @@ def get_pq(true, pred, match_iou=0.5, remap=True):
 
         paired_iou.sum(): sum of IoU within true positive predictions
 
-    """
+    \"""
     assert match_iou >= 0.0, "Cant' be negative"
     # ensure instance maps are contiguous
     if remap:
@@ -173,6 +174,85 @@ def get_pq(true, pred, match_iou=0.5, remap=True):
     # get the F1-score i.e DQ
     dq = tp / ((tp + 0.5 * fp + 0.5 * fn) + 1.0e-6)
     # get the SQ, no paired has 0 iou so not impact
+    sq = paired_iou.sum() / (tp + 1.0e-6)
+
+    return (
+        [dq, sq, dq * sq],
+        [tp, fp, fn],
+        [np.array(paired_true), np.array(paired_pred), np.array(unpaired_pred), np.array(unpaired_true)],
+        paired_iou.sum(),
+    )
+"""
+
+
+def get_pq(true, pred, match_iou=0.5, remap=True):
+    assert match_iou >= 0.0, "Cant' be negative"
+    
+    # if remap:
+    #     pred = remap_label(pred)
+    #     true = remap_label(true)
+
+    true = true.astype(np.int32)
+    pred = pred.astype(np.int32)
+    
+    max_true = int(true.max())
+    max_pred = int(pred.max())
+    
+    # 1. Calculer l'aire (nombre de pixels) de chaque instance en 1 seul passage !
+    true_areas = np.bincount(true.ravel())
+    pred_areas = np.bincount(pred.ravel())
+
+    # 2. Trouver les intersections entre TOUS les ground truths et TOUTES les prédictions
+    # Astuce mathématique : on combine les deux images en une seule équation
+    offset = max_pred + 1
+    combo = (true.astype(np.int64) * offset) + pred.astype(np.int64)
+    
+    # bincount compte combien de fois chaque combinaison (vrai_noyau, pred_noyau) apparaît
+    combo_counts = np.bincount(combo.ravel())
+    
+    # 3. Extraire les paires qui se chevauchent vraiment
+    non_zero_indices = np.nonzero(combo_counts)[0]
+    t_ids = non_zero_indices // offset
+    p_ids = non_zero_indices % offset
+    intersections = combo_counts[non_zero_indices]
+
+    # 4. Remplir la matrice d'IoU (Instantanné car on ne boucle que sur les vrais chevauchements)
+    pairwise_iou = np.zeros([max_true, max_pred], dtype=np.float64)
+
+    for t_id, p_id, inter in zip(t_ids, p_ids, intersections):
+        if t_id == 0 or p_id == 0:
+            continue # On ignore le fond (background)
+            
+        union = true_areas[t_id] + pred_areas[p_id] - inter
+        pairwise_iou[t_id - 1, p_id - 1] = inter / union
+
+    # --- LE RESTE DU CODE RESTE IDENTIQUE ---
+    true_id_list = list(np.unique(true))
+    pred_id_list = list(np.unique(pred))
+
+    if match_iou >= 0.5:
+        paired_iou = pairwise_iou[pairwise_iou > match_iou]
+        pairwise_iou[pairwise_iou <= match_iou] = 0.0
+        paired_true, paired_pred = np.nonzero(pairwise_iou)
+        paired_iou = pairwise_iou[paired_true, paired_pred]
+        paired_true += 1  
+        paired_pred += 1  
+    else:  
+        paired_true, paired_pred = linear_sum_assignment(-pairwise_iou)
+        paired_iou = pairwise_iou[paired_true, paired_pred]
+
+        paired_true = list(paired_true[paired_iou > match_iou] + 1)
+        paired_pred = list(paired_pred[paired_iou > match_iou] + 1)
+        paired_iou = paired_iou[paired_iou > match_iou]
+
+    unpaired_true = [idx for idx in true_id_list[1:] if idx not in paired_true]
+    unpaired_pred = [idx for idx in pred_id_list[1:] if idx not in paired_pred]
+
+    tp = len(paired_true)
+    fp = len(unpaired_pred)
+    fn = len(unpaired_true)
+    
+    dq = tp / ((tp + 0.5 * fp + 0.5 * fn) + 1.0e-6)
     sq = paired_iou.sum() / (tp + 1.0e-6)
 
     return (

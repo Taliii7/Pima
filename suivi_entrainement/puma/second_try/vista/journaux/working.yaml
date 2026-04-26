@@ -1,0 +1,126 @@
+_meta_:
+  authors: MONAI team
+  changelog: {0.0.1: initialize the model package structure, 0.0.2: fix attr error,
+    0.0.3: fix final val error if override datalist, 0.0.4: update loadimage and weighted
+      sampler, 0.0.5: add inference logic and rename the entry point class from train.py
+      to workflow.py, 0.0.6: 'update the transforms and model, partly verified the
+      reimplementation', 0.0.7: update workflow input arg, 0.0.8: let pretrained_ckpt_name
+      refer to ckpt_path, 0.0.9: do workflow_type and dataset data changes, 0.1.0: update
+      evaluator, 0.1.1: remove unused code, 0.1.2: use_weighted_sampler defaults to
+      false, 0.1.3: update default optimizer, 0.1.4: add unit tests and use monai
+      1.3.1, 0.1.5: improvements and mlflow support, 0.1.6: 'data processing script
+      instead of json generation, data licenses', 0.1.7: prescaling to 0..1, 0.1.8: added
+      manfests, 0.1.9: finetuning checkpoint loading update, 0.2.0: support bundle
+      inference json}
+  copyright: Copyright (c) MONAI Consortium
+  data_type: tiff
+  description: VISTA2D bundle for cell image analysis
+  einops: 0.7.0
+  eval_metrics: {mean_dice: 0.0}
+  image_classes: 1 channel data, intensity scaled to [0, 1]
+  intended_use: This is an example, not to be used for diagnostic purposes
+  label_classes: 3-channel data
+  monai_version: 1.3.1
+  name: VISTA-Cell
+  network_data_format:
+    inputs:
+      image:
+        channel_def: {'0': image}
+        dtype: float32
+        format: RGB
+        is_patch_data: true
+        num_channels: 3
+        spatial_shape: [256, 256]
+        type: image
+        value_range: [0, 255]
+    outputs:
+      pred:
+        dtype: float32
+        format: segmentation
+        num_channels: 3
+        spatial_shape: [256, 256]
+        type: image
+        value_range: [0, 1]
+  numpy_version: 1.24.4
+  pred_classes: 3 channels
+  pytorch_version: 2.2.2
+  references: []
+  required_packages_version: {cellpose: 3.0.8, cucim-cu12: 24.2.0, fastremap: 1.14.1,
+    fire: 0.6.0, gdown: 5.1.0, mlflow: 2.13.1, numba: 0.59.0, opencv-python: 4.7.0.68,
+    pynvml: 11.5.0, pyyaml: 6.0.1, scikit-image: 0.22.0, segment_anything: '1.0',
+    tensorboard: 2.16.2, torchvision: 0.17.2}
+  schema: https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json
+  task: cell image segmentation
+  version: 0.2.0
+amp: true
+amp_dtype: float16
+basedir: ../puma_data_converted
+bundle_root: .
+channels_last: true
+ckpt_path: $os.path.join(@bundle_root, "models/puma")
+ckpt_save: true
+compile: false
+data_list_files:
+- {basedir: '@basedir', datalist: '@datalist'}
+datalist: datalists/puma_datalist.json
+dataset:
+  data: {data_list_files: '@data_list_files', key: validation}
+device: $torch.device(('cuda:' + os.environ.get('LOCAL_RANK', '0')) if torch.cuda.is_available()
+  else 'cpu')
+fold: 0
+image_saver: {_target_: scripts.components.SaveTiffd, keys: seg, nested_folder: false,
+  output_dir: '@output_dir'}
+imports: [$import os]
+infer:
+  dataset: {data: '@dataset::data'}
+  evaluator: {postprocessing: '@postprocessing'}
+inferer:
+  sliding_inferer: {_target_: monai.inferers.SlidingWindowInfererAdapt, cache_roi_weight_map: true,
+    mode: gaussian, overlap: 0.5, progress: false, roi_size: '@roi_size', sw_batch_size: 1}
+key_metric: {_target_: scripts.components.CellAcc}
+learning_rate: 0.0001
+log_output_file: $os.path.join(@output_dir, "vista_puma.log")
+loss_function: {_target_: scripts.components.CellLoss}
+lr_scheduler: {_target_: monai.optimizers.lr_scheduler.WarmupCosineSchedule, optimizer: '@optimizer',
+  t_total: '@train::trainer::max_epochs', warmup_multiplier: 0.1, warmup_steps: '@train::trainer::num_warmup_epochs'}
+mlflow_log_system_metrics: true
+mlflow_run_name: null
+mlflow_tracking_uri: null
+network: $@network_def.to(@device)
+network_def: {_target_: scripts.cell_sam_wrapper.CellSamWrapper, checkpoint: '$os.path.join(@bundle_root,
+    "models/sam_vit_b_01ec64.pth")'}
+optimizer: {_target_: torch.optim.AdamW, lr: '@learning_rate', params: $@network.parameters(),
+  weight_decay: 1.0e-05}
+output_dir: $os.path.join(@bundle_root, "eval/puma")
+postprocessing:
+  _target_: monai.transforms.Compose
+  transforms: ['@image_saver']
+pretrained_ckpt_name: null
+pretrained_ckpt_path: ./models/model.pt
+quick: false
+roi_size: [256, 256]
+run_final_testing: true
+seed: null
+start_epoch: 0
+train:
+  batch_size: 2
+  dataset:
+    data: {data_list_files: '@data_list_files', key: validation}
+    preprocessing: {roi_size: '@roi_size'}
+  handlers: []
+  num_workers: 4
+  skip: false
+  trainer: {max_epochs: 70, num_epochs_per_saving: 5, num_epochs_per_validation: 5,
+    num_warmup_epochs: 3}
+use_weighted_sampler: false
+validate:
+  batch_size: 1
+  dataset: {data: '@dataset::data'}
+  evaluator: {postprocessing: '@postprocessing'}
+  grouping: true
+  handlers: null
+  inferer: '@inferer::sliding_inferer'
+  key_metric: '@key_metric'
+  num_workers: 4
+  postprocessing: null
+  preprocessing: '@train::dataset::preprocessing'

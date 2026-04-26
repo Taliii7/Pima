@@ -1,0 +1,11 @@
+- {best_avg_score_epoch: 4, best_avg_score: 0.8339, save_time: 3.6093, time: 0.06
+    hr, train_time: 25.33s, validation_time: 112.77s, epoch_time: 138.10s, model: ./models/puma/model.pt,
+  date: '2026-04-25 14:55:25'}
+- {best_avg_score_epoch: 19, best_avg_score: 0.8403, save_time: 3.7547, time: 0.26
+    hr, train_time: 25.38s, validation_time: 109.83s, epoch_time: 135.21s, model: ./models/puma/model.pt,
+  date: '2026-04-25 15:07:31'}
+- {best_avg_score_epoch: 44, best_avg_score: 0.8419, save_time: 3.7227, time: 0.60
+    hr, train_time: 25.49s, validation_time: 110.08s, epoch_time: 135.58s, model: ./models/puma/model.pt,
+  date: '2026-04-25 15:27:43'}
+- {best_avg_score_epoch: 44, best_avg_score: 0.8310, validation_time: 81.04s, run_final_testing: true,
+  time: 0.93 hr, model: ./models/puma/model.pt, date: '2026-04-25 15:47:30'}

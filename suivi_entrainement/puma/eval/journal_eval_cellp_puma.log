@@ -1,0 +1,72 @@
+nohup: les entrées sont ignorées
+===================================================
+ Début de l'évaluation des modèles sur PUMA
+ Test dir : ../puma_data/test
+===================================================
+>> Évaluation 1/2 : Baseline (Sans fine-tuning)
+Super ! Le GPU NVIDIA du serveur est activé !
+
+=== Lancement de l'évaluation sur le dossier : ../puma_data/test ===
+Chargement du modèle Cellpose par défaut (Modèle personnalisé non trouvé ou non spécifié).
+Évaluation image par image en cours (22 images)...
+Inférence et Scores:   0%|          | 0/22 [00:00<?, ?img/s]Inférence et Scores:   5%|▍         | 1/22 [00:03<01:19,  3.77s/img]Inférence et Scores:   9%|▉         | 2/22 [00:07<01:10,  3.53s/img]Inférence et Scores:  14%|█▎        | 3/22 [00:10<01:08,  3.62s/img]Inférence et Scores:  18%|█▊        | 4/22 [00:14<01:07,  3.73s/img]Inférence et Scores:  23%|██▎       | 5/22 [00:18<01:02,  3.69s/img]Inférence et Scores:  27%|██▋       | 6/22 [00:22<00:59,  3.69s/img]Inférence et Scores:  32%|███▏      | 7/22 [00:25<00:55,  3.73s/img]Inférence et Scores:  36%|███▋      | 8/22 [00:29<00:52,  3.76s/img]Inférence et Scores:  41%|████      | 9/22 [00:33<00:48,  3.72s/img]Inférence et Scores:  45%|████▌     | 10/22 [00:37<00:45,  3.79s/img]Inférence et Scores:  50%|█████     | 11/22 [00:40<00:41,  3.74s/img]Inférence et Scores:  55%|█████▍    | 12/22 [00:44<00:37,  3.73s/img]Inférence et Scores:  59%|█████▉    | 13/22 [00:48<00:33,  3.71s/img]Inférence et Scores:  64%|██████▎   | 14/22 [00:51<00:29,  3.66s/img]Inférence et Scores:  68%|██████▊   | 15/22 [00:55<00:25,  3.66s/img]Inférence et Scores:  73%|███████▎  | 16/22 [00:59<00:21,  3.65s/img]Inférence et Scores:  77%|███████▋  | 17/22 [01:03<00:18,  3.74s/img]Inférence et Scores:  82%|████████▏ | 18/22 [01:06<00:14,  3.73s/img]Inférence et Scores:  86%|████████▋ | 19/22 [01:10<00:11,  3.72s/img]Inférence et Scores:  91%|█████████ | 20/22 [01:14<00:07,  3.77s/img]Inférence et Scores:  95%|█████████▌| 21/22 [01:17<00:03,  3.69s/img]Inférence et Scores: 100%|██████████| 22/22 [01:21<00:00,  3.67s/img]Inférence et Scores: 100%|██████████| 22/22 [01:21<00:00,  3.70s/img]
+
+============================================================
+ RÉSULTATS DE L'ÉVALUATION (Panoptic Quality & COCO) 
+============================================================
+ Modèle évalué     : Cellpose Standard
+ Seuil de rigueur  : IoU >= 0.5
+ Images traitées   : 22
+------------------------------------------------------------
+ 1 QUALITÉ PANOPTIQUE (Moyenne par image)
+   SQ (Segmentation Quality) : 81.73% (Précision des contours)
+   DQ (Detection Quality)    : 86.94% (F1-score moyen par image)
+   PQ (Panoptic Quality)     : 71.26% (Le score roi : SQ x DQ)
+------------------------------------------------------------
+ 2 DÉTECTION GLOBALE COCO (Toutes images confondues)
+   Vrais Positifs (TP) : 8120 cellules correctement trouvées
+   Faux Positifs  (FP) : 823 fausses alarmes (bruit/fond)
+   Faux Négatifs  (FN) : 1464 vraies cellules ratées
+   Précision           : 90.80%
+   Rappel (Recall)     : 84.72%
+   F1-Score Global     : 87.66%
+============================================================
+
+
+Exportation des métriques vers : ../resultats_comparaison/results_puma.csv
+Résultats enregistrés avec succès dans : ../resultats_comparaison/results_puma.csv
+>> Évaluation 2/2 : Modèle Fine-tuné sur PUMA
+Super ! Le GPU NVIDIA du serveur est activé !
+
+=== Lancement de l'évaluation sur le dossier : ../puma_data/test ===
+Chargement de TON modèle personnalisé : models/cellposeSam_puma
+Évaluation image par image en cours (22 images)...
+Inférence et Scores:   0%|          | 0/22 [00:00<?, ?img/s]Inférence et Scores:   5%|▍         | 1/22 [00:03<01:19,  3.81s/img]Inférence et Scores:   9%|▉         | 2/22 [00:07<01:11,  3.58s/img]Inférence et Scores:  14%|█▎        | 3/22 [00:11<01:09,  3.68s/img]Inférence et Scores:  18%|█▊        | 4/22 [00:14<01:08,  3.78s/img]Inférence et Scores:  23%|██▎       | 5/22 [00:18<01:03,  3.73s/img]Inférence et Scores:  27%|██▋       | 6/22 [00:22<00:59,  3.75s/img]Inférence et Scores:  32%|███▏      | 7/22 [00:26<00:56,  3.75s/img]Inférence et Scores:  36%|███▋      | 8/22 [00:29<00:52,  3.76s/img]Inférence et Scores:  41%|████      | 9/22 [00:33<00:48,  3.72s/img]Inférence et Scores:  45%|████▌     | 10/22 [00:37<00:45,  3.79s/img]Inférence et Scores:  50%|█████     | 11/22 [00:41<00:41,  3.73s/img]Inférence et Scores:  55%|█████▍    | 12/22 [00:44<00:37,  3.73s/img]Inférence et Scores:  59%|█████▉    | 13/22 [00:48<00:33,  3.73s/img]Inférence et Scores:  64%|██████▎   | 14/22 [00:52<00:29,  3.68s/img]Inférence et Scores:  68%|██████▊   | 15/22 [00:55<00:25,  3.68s/img]Inférence et Scores:  73%|███████▎  | 16/22 [00:59<00:22,  3.68s/img]Inférence et Scores:  77%|███████▋  | 17/22 [01:03<00:18,  3.77s/img]Inférence et Scores:  82%|████████▏ | 18/22 [01:07<00:15,  3.77s/img]Inférence et Scores:  86%|████████▋ | 19/22 [01:10<00:11,  3.76s/img]Inférence et Scores:  91%|█████████ | 20/22 [01:14<00:07,  3.83s/img]Inférence et Scores:  95%|█████████▌| 21/22 [01:18<00:03,  3.73s/img]Inférence et Scores: 100%|██████████| 22/22 [01:22<00:00,  3.71s/img]Inférence et Scores: 100%|██████████| 22/22 [01:22<00:00,  3.73s/img]
+
+============================================================
+ RÉSULTATS DE L'ÉVALUATION (Panoptic Quality & COCO) 
+============================================================
+ Modèle évalué     : cellposeSam_puma
+ Seuil de rigueur  : IoU >= 0.5
+ Images traitées   : 22
+------------------------------------------------------------
+ 1 QUALITÉ PANOPTIQUE (Moyenne par image)
+   SQ (Segmentation Quality) : 86.38% (Précision des contours)
+   DQ (Detection Quality)    : 91.71% (F1-score moyen par image)
+   PQ (Panoptic Quality)     : 79.36% (Le score roi : SQ x DQ)
+------------------------------------------------------------
+ 2 DÉTECTION GLOBALE COCO (Toutes images confondues)
+   Vrais Positifs (TP) : 8852 cellules correctement trouvées
+   Faux Positifs  (FP) : 766 fausses alarmes (bruit/fond)
+   Faux Négatifs  (FN) : 732 vraies cellules ratées
+   Précision           : 92.04%
+   Rappel (Recall)     : 92.36%
+   F1-Score Global     : 92.20%
+============================================================
+
+
+Exportation des métriques vers : ../resultats_comparaison/results_puma.csv
+Résultats enregistrés avec succès dans : ../resultats_comparaison/results_puma.csv
+===================================================
+ Évaluations PUMA terminées ! CSV : ../resultats_comparaison/results_puma.csv
+===================================================

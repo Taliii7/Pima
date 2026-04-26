@@ -5,7 +5,8 @@ import torch
 import numpy as np
 import tifffile
 from tqdm import tqdm
-
+import cv2
+import matplotlib.pyplot as plt
 from monai.transforms import (
     Compose, EnsureTyped, ScaleIntensityd, ScaleIntensityRangePercentilesd
 )
@@ -67,20 +68,27 @@ def EvaluateDataset(test_dir, device, model_path, sam_ckpt, iou_threshold=0.5):
         print(f"Erreur : Le dossier {test_dir} n'existe pas.")
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     
-    chemins_images = sorted([os.path.join(test_dir, f) for f in os.listdir(test_dir) if f.endswith('.png') or f.endswith('.tif')])
-    chemins_labels = [p.replace('.png', '_masks.tiff').replace('.tif', '_masks.tiff') for p in chemins_images]
+    # les chemins de gt et masks 
+    dossier_img = os.path.join(test_dir, 'images')
+    dossier_lbl = os.path.join(test_dir, 'masks')
+    
+    if not os.path.exists(dossier_img):
+        dossier_img = test_dir
+        dossier_lbl = test_dir
+
+    chemins_images = sorted([os.path.join(dossier_img, f) for f in os.listdir(dossier_img) if f.endswith('.png') or f.endswith('.tif')])
     
     if len(chemins_images) == 0:
         print("Aucune image trouvée.")
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
-    # Chargement du modèle
+    # Chargement du modèle VISTA
     model = load_vista_model(sam_ckpt, model_path, device)
     transforms = get_preprocessing_transforms()
     
     # Paramètres de la fenêtre glissante
     inferer = SlidingWindowInfererAdapt(
-        roi_size=[256, 256], sw_batch_size=1, overlap=0.625, 
+        roi_size=[256, 256], sw_batch_size=4, overlap=0.625, 
         mode="gaussian", cache_roi_weight_map=True, progress=False
     )
     post_processor = LogitsToLabels()
@@ -92,20 +100,41 @@ def EvaluateDataset(test_dir, device, model_path, sam_ckpt, iou_threshold=0.5):
     use_amp = device.type == "cuda"
     amp_dtype = torch.float16 if use_amp else torch.float32
 
-    #boucle sur chaque image
-    for img_path, gt_path in tqdm(zip(chemins_images, chemins_labels), total=len(chemins_images), desc="Inférence VISTA"):
-        if not os.path.exists(gt_path):
+    # Boucle sur chaque image
+    for img_path in tqdm(chemins_images, desc="Inférence VISTA"):
+        
+        # 2. RECHERCHE DU MASQUE CORRESPONDANT
+        base_name = os.path.splitext(os.path.basename(img_path))[0]
+        
+        # On tente de trouver le nouveau format (_mask.png) ou l'ancien (_masks.tiff)
+        gt_path_png    = os.path.join(dossier_lbl, f"{base_name}_nuclei_mask.png")
+        gt_path_tiff   = os.path.join(dossier_lbl, f"{base_name}_nuclei_mask.tiff")
+        gt_path_old    = os.path.join(dossier_lbl, f"{base_name}_masks.tiff")
+        gt_path_old2   = os.path.join(dossier_lbl, f"{base_name}_mask.png")
+
+        gt_path = None
+        for candidate in [gt_path_tiff, gt_path_png, gt_path_old, gt_path_old2]:
+            if os.path.exists(candidate):
+                gt_path = candidate
+                break
+
+        if gt_path is None:
             continue
         
-        # ground thruth
-        gt_mask = tifffile.imread(gt_path)
+        # Forcer la lecture 16-bit correcte
+        gt_mask = cv2.imread(gt_path, cv2.IMREAD_UNCHANGED)
+        if gt_mask is None:
+            continue
+        if gt_mask.ndim > 2:
+            gt_mask = gt_mask[:, :, 0]
+        gt_mask = gt_mask.astype(np.int32)
 
-        #preparation MONAI de l'image
+        # Préparation MONAI de l'image
         data_dict = {"image": img_path}
         dataset = Dataset(data=[data_dict], transform=transforms)
         dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
         
-        # prrdiction de monai
+        # Prédiction de MONAI
         for batch in dataloader:
             inputs = batch["image"].to(device)
             
@@ -116,9 +145,20 @@ def EvaluateDataset(test_dir, device, model_path, sam_ckpt, iou_threshold=0.5):
                 logits_b0 = logits[0] 
                 pred_mask, _ = post_processor(logits_b0, filename=img_path)
                 
-            break # on force l'arrêt après le premier batch (puisqu'on n'a qu'une image par itération)
+            break # On force l'arrêt après le premier batch
+            
+        # 4. SÉCURITÉ FORMAT PRÉDICTION
+        # VISTA peut renvoyer un Tensor PyTorch, il faut le convertir en tableau NumPy pour get_pq
+        if isinstance(pred_mask, torch.Tensor):
+            pred_mask = pred_mask.cpu().numpy()
+            
+        # Si la prédiction a des dimensions supplémentaires (ex: [1, H, W]), on la met à plat
+        if pred_mask.ndim > 2:
+            pred_mask = pred_mask.squeeze()
+            
+        pred_mask = pred_mask.astype(np.int32)
 
-        # scores
+        # 5. ÉVALUATION (Le Juge)
         pq_metrics, counts, _, _ = get_pq(gt_mask, pred_mask, match_iou=iou_threshold)
         
         dq, sq, pq = pq_metrics
@@ -142,8 +182,89 @@ def EvaluateDataset(test_dir, device, model_path, sam_ckpt, iou_threshold=0.5):
 
     print(f"\n--- RÉSULTATS VISTA-2D ---")
     print(f" PQ: {avg_pq*100:.2f}% | F1: {f1_score*100:.2f}%")
+    print(f" Total TP: {global_tp} | FP: {global_fp} | FN: {global_fn}")
 
     return len(list_dq), avg_sq, avg_dq, avg_pq, global_tp, global_fp, global_fn, precision, recall, f1_score
+
+
+def evaluate_single_image_vista(image_path, gt_path, model_path, sam_ckpt, iou_threshold=0.5):
+    """Évalue une seule image avec VISTA-2D et affiche les métriques."""
+    device = deviceChoice() # Utilise ta fonction utilitaire pour MPS/CUDA
+    
+    print(f"\n[1/4] Chargement de l'image : {os.path.basename(image_path)}")
+    
+    # 1. Chargement du modèle et des transforms
+    model = load_vista_model(sam_ckpt, model_path, device)
+    transforms = get_preprocessing_transforms()
+    
+    # 2. Inférence VISTA (MONAI)
+    print(f"[2/4] Segmentation VISTA-2D en cours...")
+    data_dict = {"image": image_path}
+    dataset = Dataset(data=[data_dict], transform=transforms)
+    dataloader = DataLoader(dataset, batch_size=1)
+    
+    inferer = SlidingWindowInfererAdapt(
+        roi_size=[256, 256], sw_batch_size=1, overlap=0.625, 
+        mode="gaussian", cache_roi_weight_map=True, progress=False
+    )
+    post_processor = LogitsToLabels()
+
+    with torch.no_grad():
+        for batch in dataloader:
+            inputs = batch["image"].to(device)
+            logits = inferer(inputs=inputs, network=model)
+            logits_b0 = logits[0] 
+            pred_mask, _ = post_processor(logits_b0, filename=image_path)
+            break
+
+    # Conversion sécurité pour la prédiction
+    if isinstance(pred_mask, torch.Tensor):
+        pred_mask = pred_mask.cpu().numpy()
+    if pred_mask.ndim > 2:
+        pred_mask = pred_mask.squeeze()
+    pred_mask = pred_mask.astype(np.int32)
+
+    # 3. Chargement Intelligent du Ground Truth
+    print(f"[3/4] Calcul des métriques (IoU >= {iou_threshold})...")
+    if os.path.exists(gt_path):
+        # Chargement en 16-bit sans destruction des IDs
+        gt_mask = cv2.imread(gt_path, cv2.IMREAD_UNCHANGED)
+        
+        # Sécurité Rétrocompatibilité (si c'est un ancien format RGB)
+        if gt_mask.ndim > 2:
+            gt_mask = gt_mask[:, :, 0]
+            
+        gt_mask = gt_mask.astype(np.int32)
+
+        # DEBUG : Affichage des infos pour être sûr
+        print(f"     GT Max ID   : {np.max(gt_mask)} (Type: {gt_mask.dtype})")
+        print(f"     Pred Max ID : {np.max(pred_mask)} (Type: {pred_mask.dtype})")
+
+        # 4. Visualisation du Debug Overlap (Rouge vs Vert)
+        plt.figure(figsize=(10, 10))
+        plt.imshow(gt_mask > 0, cmap='Reds', alpha=0.5)
+        plt.imshow(pred_mask > 0, cmap='Greens', alpha=0.5)
+        plt.title(f"VISTA Debug: Rouge (GT) vs Vert (Pred) - {os.path.basename(image_path)}")
+        plt.axis('off')
+        plt.savefig('debug_overlap_vista.png', bbox_inches='tight')
+        print("     Image de débogage générée : debug_overlap_vista.png")
+
+        # 5. Calcul des métriques PQ
+        pq_metrics, counts, _, _ = get_pq(gt_mask, pred_mask, match_iou=iou_threshold)
+        dq, sq, pq = pq_metrics
+        tp, fp, fn = counts
+
+        print("\n" + "="*50)
+        print(f" RÉSULTATS VISTA-2D : {os.path.basename(image_path)}")
+        print("="*50)
+        print(f" SQ (Segmentation Quality) : {sq*100:.2f}%")
+        print(f" DQ (Detection Quality)    : {dq*100:.2f}%")
+        print(f" PQ (Panoptic Quality)     : {pq*100:.2f}%")
+        print("-" * 50)
+        print(f" TP: {tp} | FP: {fp} | FN: {fn}")
+        print("="*50)
+    else:
+        print(" [!] Ground Truth non trouvé au chemin indiqué.")
 
 
 def main():

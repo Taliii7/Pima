@@ -1,10 +1,10 @@
 import tifffile
-import numpy as np
 import torch
+import numpy as np
 import re
 import re
-import os
 import csv
+import os
 try:
     import nd2
     ND2 = True
@@ -16,6 +16,18 @@ try:
 except:
     NRRD = False
 
+
+def deviceChoice():
+    """Sélectionne le meilleur hardware disponible (CUDA > MPS > CPU)"""
+    if torch.cuda.is_available():
+        print("Super ! Le GPU NVIDIA du serveur est activé !")
+        return torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        print("Le GPU du Mac M1/M2/M3 (MPS) est activé.")
+        return torch.device("mps")
+    else:
+        print("Attention, on tourne sur le CPU.")
+        return torch.device("cpu") 
 
 
 def save_metrics_to_csv(csv_path, famille, modele, zoom, dim, iou, nb_images, sq, dq, pq, tp, fp, fn, precision, recall, f1):
@@ -42,11 +54,11 @@ def save_metrics_to_csv(csv_path, famille, modele, zoom, dim, iou, nb_images, sq
             round(precision*100, 2), round(recall*100, 2), round(f1*100, 2)
         ])
         
-    print(f"Résultats enregistrés avec succès dans : {csv_path}")    
+    print(f"Résultats enregistrés avec succès dans : {csv_path}")  
+
 
 #Functions stolen from cellpose, because it's exactly what I need and it seems to work well
 #I just removed the logger stuff because tbh I don't really know what this is but I feel like I don't really need it
-
 def load_dax(filename):
     ### modified from ZhuangLab github:
     ### https://github.com/ZhuangLab/storm-analysis/blob/71ae493cbd17ddb97938d0ae2032d97a0eaa76b2/storm_analysis/sa_library/datareader.py#L156
@@ -97,21 +109,6 @@ def load_dax(filename):
     img = np.array(img)
 
     return img
-
-
-
-def deviceChoice():
-    """Sélectionne le meilleur hardware disponible (CUDA > MPS > CPU)"""
-    if torch.cuda.is_available():
-        print("Super ! Le GPU NVIDIA du serveur est activé !")
-        return torch.device("cuda")
-    elif torch.backends.mps.is_available():
-        print("Le GPU du Mac M1/M2/M3 (MPS) est activé.")
-        return torch.device("mps")
-    else:
-        print("Attention, on tourne sur le CPU.")
-        return torch.device("cpu")
-
 
 def imread(filename):
     """

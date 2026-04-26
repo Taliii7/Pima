@@ -1,5 +1,4 @@
 # --- Environnements Virtuels ---
-
 env/
 venv/
 .env
@@ -13,15 +12,36 @@ __pycache__/
 *.so
 .Python
 
+# --- Modèles  ---
+# On ignore tout le contenu des dossiers models...
+cellpose-sam/models/*
+vista2d/models/*
+# sauf le fichier .gitkeep pour forcer Git à garder la structure
+!cellpose-sam/models/.gitkeep
+!vista2d/models/.gitkeep
 
-#modeles
+*.pt
+*.pth
 
-cellpose-sam/models/
-vista2d/models/
+# --- Datasets (Données brutes et converties) ---
+cytoDArk0/
+cytoDArk_split/
+puma_data/
+puma_data_converted/
+puma_masks_visual/
 
-
-# --- Sorties spécifiques ---
+# --- Sorties, Résultats et Évaluations ---
 resultat_serveur.png
+resultats_comparaison_v0/
+
+
+
+# --- Images de Debug et Tests locaux ---
+# On ignore les TIF générés en sortie et les images de debug
+*.tif
+*debug*.png
+*resultat*.png
+images/teeeeest.png
 
 # --- OS spécifiques  ---
 .DS_Store
@@ -37,6 +57,6 @@ Icon
 # --- Jupyter Notebooks ---
 .ipynb_checkpoints
 
-#autres
-cytoDArk0/
-cytoDArk_split/
+# --- Autres scripts/fichiers locaux ignorés ---
+common/affiche_image.py
+cellpose-sam_ancien_results.csv

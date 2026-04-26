@@ -1,0 +1,16 @@
+- {best_avg_score_epoch: -1, best_avg_score: 0.0000, validation_time: 1.15s, run_final_testing: true,
+  time: 12.68 hr, model: ./models/model.pt, date: '2026-04-22 23:45:56'}
+- {best_avg_score_epoch: 4, best_avg_score: 0.7525, save_time: 3.7402, time: 0.97
+    hr, train_time: 738.39s, validation_time: 547.25s, epoch_time: 1285.63s, model: ./models/model.pt,
+  date: '2026-04-23 14:12:41'}
+- {best_avg_score_epoch: 4, best_avg_score: 0.7424, save_time: 3.7545, time: 0.51
+    hr, train_time: 739.77s, validation_time: 368.56s, epoch_time: 1108.33s, model: ./models/model.pt,
+  date: '2026-04-25 14:00:54'}
+- {best_avg_score_epoch: 9, best_avg_score: 0.7604, save_time: 3.7026, time: 1.64
+    hr, train_time: 739.07s, validation_time: 364.40s, epoch_time: 1103.48s, model: ./models/model.pt,
+  date: '2026-04-25 15:08:42'}
+- {best_avg_score_epoch: 14, best_avg_score: 0.7640, save_time: 3.7933, time: 2.77
+    hr, train_time: 737.52s, validation_time: 364.60s, epoch_time: 1102.12s, model: ./models/model.pt,
+  date: '2026-04-25 16:16:28'}
+- {best_avg_score_epoch: 14, best_avg_score: 0.0000, validation_time: 1.23s, run_final_testing: true,
+  time: 10.55 hr, model: ./models/model.pt, date: '2026-04-26 00:03:19'}

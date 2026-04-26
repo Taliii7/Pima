@@ -1,0 +1,29 @@
+===================================================
+ Début de l'évaluation VISTA-2D sur PUMA
+ Test dir : ../puma_data_converted/test
+===================================================
+>> Évaluation 1/2 : VISTA-2D Baseline (zero-shot)
+Super ! Le GPU NVIDIA du serveur est activé !
+
+=== Lancement de l'évaluation VISTA-2D sur : ../puma_data_converted/test ===
+CellSamWrapper auto_resize_inputs True network_resize_roi [1024, 1024] checkpoint models/sam_vit_b_01ec64.pth
+Inférence VISTA:   0%|          | 0/22 [00:00<?, ?it/s]Inférence VISTA:   5%|▍         | 1/22 [00:09<03:11,  9.14s/it]Inférence VISTA:   9%|▉         | 2/22 [00:16<02:40,  8.03s/it]Inférence VISTA:  14%|█▎        | 3/22 [00:23<02:27,  7.77s/it]Inférence VISTA:  18%|█▊        | 4/22 [00:31<02:18,  7.68s/it]Inférence VISTA:  23%|██▎       | 5/22 [00:38<02:08,  7.55s/it]Inférence VISTA:  27%|██▋       | 6/22 [00:45<01:59,  7.46s/it]Inférence VISTA:  32%|███▏      | 7/22 [00:53<01:51,  7.40s/it]Inférence VISTA:  36%|███▋      | 8/22 [01:00<01:43,  7.40s/it]Inférence VISTA:  41%|████      | 9/22 [01:07<01:35,  7.36s/it]Inférence VISTA:  45%|████▌     | 10/22 [01:15<01:28,  7.40s/it]Inférence VISTA:  50%|█████     | 11/22 [01:22<01:20,  7.36s/it]Inférence VISTA:  55%|█████▍    | 12/22 [01:30<01:13,  7.37s/it]Inférence VISTA:  59%|█████▉    | 13/22 [01:37<01:06,  7.36s/it]Inférence VISTA:  64%|██████▎   | 14/22 [01:44<00:58,  7.33s/it]Inférence VISTA:  68%|██████▊   | 15/22 [01:52<00:51,  7.33s/it]Inférence VISTA:  73%|███████▎  | 16/22 [01:59<00:43,  7.32s/it]Inférence VISTA:  77%|███████▋  | 17/22 [02:06<00:36,  7.37s/it]Inférence VISTA:  82%|████████▏ | 18/22 [02:14<00:29,  7.37s/it]Inférence VISTA:  86%|████████▋ | 19/22 [02:21<00:21,  7.33s/it]Inférence VISTA:  91%|█████████ | 20/22 [02:28<00:14,  7.37s/it]Inférence VISTA:  95%|█████████▌| 21/22 [02:36<00:07,  7.33s/it]Inférence VISTA: 100%|██████████| 22/22 [02:43<00:00,  7.34s/it]Inférence VISTA: 100%|██████████| 22/22 [02:43<00:00,  7.43s/it]
+
+--- RÉSULTATS VISTA-2D ---
+ PQ: 50.28% | F1: 70.20%
+ Total TP: 5523 | FP: 627 | FN: 4061
+Résultats enregistrés avec succès dans : ../resultats_comparaison/results_puma.csv
+>> Évaluation 2/2 : VISTA-2D Fine-tuné sur PUMA
+Super ! Le GPU NVIDIA du serveur est activé !
+
+=== Lancement de l'évaluation VISTA-2D sur : ../puma_data_converted/test ===
+CellSamWrapper auto_resize_inputs True network_resize_roi [1024, 1024] checkpoint models/sam_vit_b_01ec64.pth
+Inférence VISTA:   0%|          | 0/22 [00:00<?, ?it/s]Inférence VISTA:   5%|▍         | 1/22 [00:09<03:15,  9.31s/it]Inférence VISTA:   9%|▉         | 2/22 [00:16<02:42,  8.10s/it]Inférence VISTA:  14%|█▎        | 3/22 [00:24<02:28,  7.81s/it]Inférence VISTA:  18%|█▊        | 4/22 [00:31<02:19,  7.74s/it]Inférence VISTA:  23%|██▎       | 5/22 [00:39<02:09,  7.62s/it]Inférence VISTA:  27%|██▋       | 6/22 [00:46<02:00,  7.54s/it]Inférence VISTA:  32%|███▏      | 7/22 [00:53<01:52,  7.48s/it]Inférence VISTA:  36%|███▋      | 8/22 [01:01<01:44,  7.45s/it]Inférence VISTA:  41%|████      | 9/22 [01:08<01:36,  7.42s/it]Inférence VISTA:  45%|████▌     | 10/22 [01:16<01:30,  7.58s/it]Inférence VISTA:  50%|█████     | 11/22 [01:24<01:24,  7.68s/it]Inférence VISTA:  55%|█████▍    | 12/22 [01:31<01:16,  7.61s/it]Inférence VISTA:  59%|█████▉    | 13/22 [01:39<01:07,  7.54s/it]Inférence VISTA:  64%|██████▎   | 14/22 [01:46<00:59,  7.47s/it]Inférence VISTA:  68%|██████▊   | 15/22 [01:53<00:52,  7.46s/it]Inférence VISTA:  73%|███████▎  | 16/22 [02:01<00:44,  7.44s/it]Inférence VISTA:  77%|███████▋  | 17/22 [02:08<00:37,  7.47s/it]Inférence VISTA:  82%|████████▏ | 18/22 [02:16<00:29,  7.46s/it]Inférence VISTA:  86%|████████▋ | 19/22 [02:23<00:22,  7.45s/it]Inférence VISTA:  91%|█████████ | 20/22 [02:31<00:14,  7.48s/it]Inférence VISTA:  95%|█████████▌| 21/22 [02:38<00:07,  7.42s/it]Inférence VISTA: 100%|██████████| 22/22 [02:45<00:00,  7.39s/it]Inférence VISTA: 100%|██████████| 22/22 [02:45<00:00,  7.54s/it]
+
+--- RÉSULTATS VISTA-2D ---
+ PQ: 77.55% | F1: 91.28%
+ Total TP: 8909 | FP: 1027 | FN: 675
+Résultats enregistrés avec succès dans : ../resultats_comparaison/results_puma.csv
+===================================================
+ Évaluations VISTA-2D PUMA terminées ! CSV : ../resultats_comparaison/results_puma.csv
+===================================================
