@@ -1,10 +1,11 @@
 import tifffile
-import torch
 import numpy as np
 import re
 import re
 import csv
 import os
+from cellpose import io
+
 try:
     import nd2
     ND2 = True
@@ -18,6 +19,7 @@ except:
 
 
 def deviceChoice():
+    import torch
     """Sélectionne le meilleur hardware disponible (CUDA > MPS > CPU)"""
     if torch.cuda.is_available():
         print("Super ! Le GPU NVIDIA du serveur est activé !")
@@ -215,3 +217,7 @@ def imread(filename):
             #io_logger.critical("ERROR: could not read masks from file, %s" % e)
             print(f"ERROR: could not read masks from file, {e}")
             return None
+
+
+def getImage(chemin_image): 
+    return io.imread(chemin_image)

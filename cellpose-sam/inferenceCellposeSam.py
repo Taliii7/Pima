@@ -38,18 +38,13 @@ def getImage(chemin_image):
 
 
 def SegmentOneImage(chemin_image,device,model_path=None):
-
     # charge l'image
-
-
-    
     print(f"Chargement de l'image : {chemin_image}...")
     img = getImage(chemin_image)
 
     print(f"Image de dimension : {img.shape}. L'image a en dimension de channels  {img.shape[-1]} ")
 
     if model_path:
-   
         # On dit à Cellpose de charger nos poids d'entraînement via "pretrained_model"
         print(f"Chargement de TON modèle personnalisé : {model_path}")
         model = models.CellposeModel(gpu=True, pretrained_model=model_path, device=device)
@@ -58,7 +53,7 @@ def SegmentOneImage(chemin_image,device,model_path=None):
         print("Chargement du modèle Cellpose par défaut")
         model = models.CellposeModel(gpu=True, device=device)
 
-    #l ance la prédiction 
+    # lance la prédiction 
     print("Segmentation en cours...")
     masks, flows, styles = model.eval(img, diameter=None)
 
@@ -78,7 +73,6 @@ def SegmentOneImage(chemin_image,device,model_path=None):
 
 # méthode utilitaire pour sauvegarder le resultat de la segmentation à la racine
 def showResult(img,masks,flows,output_name="resultat_serveur.png"):
-
     fig = plt.figure(figsize=(12, 5))
     img_plot = img[:, :, :3] if img.ndim == 3 and img.shape[-1] > 3 else img
     plot.show_segmentation(fig, img_plot, masks, flows[0])
@@ -87,11 +81,7 @@ def showResult(img,masks,flows,output_name="resultat_serveur.png"):
     print(f"Image sauvegardée sous '{output_name}'")
 
 
-
-
 # --------------- évaluations des perfs ---------------
-
-
 
 def evaluate_segmentation(masks, chemin_gt,baseline_black=False):
     # charge le ground truth qui est en .tiff
@@ -132,12 +122,8 @@ def evaluate_metrics(y_true, y_pred, name="Modèle"):
     print(f"Recall   : {recall:.4f} (Parmi les vraies cellules, combien ont été trouvées ?)")
 
 
-
 def print_coco_metrics(tp, fp, fn, seuils):
-
-
     print("   $$$$. $. $$$$$$$$$$$$.  PERFORMANCES GLOBALES (Norme COCO / Par Instance).     $$$$$$$$$$$$$$$$$$$$$$$$    ")
-
     
     for i, seuil in enumerate(seuils):
         total_tp = np.sum(tp[:, i]) # Toutes les cellules trouvées dans toutes les images
@@ -157,11 +143,11 @@ def print_coco_metrics(tp, fp, fn, seuils):
         print(f"F1-Score  : {f1_score*100:.2f}%")
 
 
-def test (image_path,label_path,device, gpu=True, model_path=None):
+def test(image_path,label_path,device, gpu=True, model_path=None):
     test_data =getImage(image_path)
     test_labels =getImage(label_path)
     
-    # modeele
+    # modele
     if model_path:
         model = models.CellposeModel(gpu=True, pretrained_model=model_path, device=device)
     else:
@@ -177,10 +163,89 @@ def test (image_path,label_path,device, gpu=True, model_path=None):
     #affichage des scores
     print_coco_metrics(tp, fp, fn, seuils_iou)
 
+# =========================================================================
+# NOUVELLE FONCTION : RECHERCHE DES EDGE CASES
+# =========================================================================
+def find_edge_cases(dossier_racine, device, model_path=None):
+    """
+    Parcourt une arborescence complexe, filtre UNIQUEMENT les dossiers 'test',
+    évalue le modèle sur chaque image, et affiche le Top 5 et le Flop 5 (Edge Cases).
+    """
+    print(f"\n=== 🕵️‍♂️ Recherche Globale des Edge Cases dans les dossiers 'test' de : {dossier_racine} ===")
+    
+    chemins_images = []
+    
+    # 1. Parcourir récursivement tous les sous-dossiers avec os.walk
+    for root, dirs, files in os.walk(dossier_racine):
+        # 🛑 CRUCIAL : On ignore ce dossier s'il ne s'appelle pas 'test'
+        if os.path.basename(root) != 'test':
+            continue
+            
+        for f in files:
+            # On cherche les images, mais on exclut les masques (ground truth)
+            if (f.endswith('.png') or f.endswith('.tif') or f.endswith('.tiff')) and '_masks' not in f:
+                chemins_images.append(os.path.join(root, f))
+                
+    chemins_images = sorted(chemins_images)
+    
+    # Générer les chemins des labels correspondants
+    chemins_labels = [p.replace('.png', '_masks.tiff').replace('.tif', '_masks.tiff').replace('.tiff', '_masks.tiff') for p in chemins_images]
+    
+    print(f"-> {len(chemins_images)} images de TEST trouvées au total dans l'arborescence !")
+
+    # 2. Charger le modèle
+    if model_path:
+        print(f"Chargement de ton modèle : {model_path}")
+        model = models.CellposeModel(gpu=True, pretrained_model=model_path, device=device)
+    else:
+        print("Chargement du modèle de base...")
+        model = models.CellposeModel(gpu=True, device=device)
+
+    resultats_images = []
+
+    # 3. Boucler sur chaque image individuellement
+    for img_path, gt_path in zip(chemins_images, chemins_labels):
+        if not os.path.exists(gt_path):
+            print(f"[Attention] Ground truth introuvable pour : {img_path}")
+            continue
+        
+        img = getImage(img_path)
+        gt = getImage(gt_path)
+        
+        masks_pred, _, _ = model.eval(img, diameter=None)
+        
+        # On utilise la fonction native de Cellpose
+        ap, tp, fp, fn = metrics.average_precision([gt], [masks_pred], threshold=[0.5])
+        
+        tp_val, fp_val, fn_val = tp[0][0], fp[0][0], fn[0][0]
+        
+        precision = tp_val / (tp_val + fp_val) if (tp_val + fp_val) > 0 else 0
+        recall = tp_val / (tp_val + fn_val) if (tp_val + fn_val) > 0 else 0
+        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+        
+        # On stocke le résultat en gardant le zoom, la taille et le nom
+        # Ex: "20x/256x256/ID5_Aud.png"
+        parts = img_path.split(os.sep)
+        nom_image_propre = f"{parts[-4]}/{parts[-3]}/{parts[-1]}" if len(parts) >= 4 else os.path.basename(img_path)
+        
+        resultats_images.append((nom_image_propre, f1, tp_val, fp_val, fn_val, img_path))
+        
+    # 4. Trier les résultats par F1-Score (du plus bas au plus haut)
+    resultats_images.sort(key=lambda x: x[1])
+    
+    # 5. Affichage des pires images (Nos fameux EDGE CASES)
+    print("\n🚨 --- EDGE CASES (Les 5 pires images sur TOUT le dataset de test) --- 🚨")
+    for name, f1, tp_v, fp_v, fn_v, full_path in resultats_images[:5]:
+        print(f"[{name}] F1-Score: {f1*100:.2f}% | VP: {tp_v}, FP: {fp_v}, Ratées (FN): {fn_v}")
+        print(f"    -> Chemin: {full_path}")
+        
+    # 6. Affichage des meilleures images (Les "cas d'école")
+    print("\n✅ --- CAS PARFAITS (Les 5 meilleures images sur TOUT le dataset de test) --- ✅")
+    for name, f1, tp_v, fp_v, fn_v, full_path in resultats_images[-5:]:
+        print(f"[{name}] F1-Score: {f1*100:.2f}% | VP: {tp_v}, FP: {fp_v}, Ratées (FN): {fn_v}")
+
 
 def main(): 
-
-
     parser = argparse.ArgumentParser(description="Script pour diviser le dataset cytoDArk")
 
     #entrée / sortie
@@ -190,55 +255,32 @@ def main():
     parser.add_argument("--out_dir", type=str, default="../output", help="Le nom du dossier de sortie")
     parser.add_argument("--output_name", type=str, default="../cellpose_dauphin_complet", help="Le nom de fichier de sortie")
     parser.add_argument("--model", type=str, default="models/cellpose_dauphin_complet", help="Le lien du model")
-
+    
+    # AJOUT DU NOUVEL ARGUMENT POUR LES EDGE CASES
+    parser.add_argument("--find_edges", action="store_true", help="Cherche les pires/meilleures images d'un dossier")
 
     args = parser.parse_args()
 
-    device = deviceChoice() # on mets cette méthode à l'extèrieur pour éviter de perdre du temps à charger à chaque image le device 
-    
+    device = deviceChoice() 
     modele_perso = args.model
 
-    
-    if (args.image and args.gt):
+    # GESTION DU MODE EDGE CASES
+    if args.find_edges and args.base_dir:
+        print("\n--- Mode : Recherche des Edge Cases ---")
+        find_edge_cases(dossier_test=args.base_dir, device=device, model_path=modele_perso)
+
+    elif (args.image and args.gt):
         print("\n--- TEST VISUEL SUR UNE IMAGE ---")
-        
         chemin_image = args.image
-        chemin_gt=args.gt
-        """"
-        masks, flows, styles= SegmentOneImage(chemin_image, device=device, model_path=modele_perso)
-        img= getImage(chemin_image)
-        print("\n--- ÉVALUATION chiffré ---")
-        evaluate_segmentation(masks,chemin_gt=chemin_gt,baseline_black=True )
-        # save (visuellement)
-        showResult(img, masks, flows, output_name=args.output_name)
-        """
-        #test(chemin_image,chemin_image,device=device,model_path=None)
+        chemin_gt = args.gt
+        
         evaluate_single_image(chemin_image,chemin_gt,model_path=modele_perso,iou_threshold=0.5 )
 
     elif (args.base_dir): 
         print("\n--- Analyse performance du model sur un dataset ---")
-
-        dossier_test =args.base_dir
-        EvaluateFolder(dossier_test=dossier_test, device=device,model_path=modele_perso)
-
-
-
-
-        
-    
-
-
-
-
-
-
-
-    """
-    #Si tu veux lancer le test sur un dossier test : 
-
-    
-    """
+        dossier_test = args.base_dir
+        # Assure-toi que la fonction EvaluateFolder est bien importée ou définie si tu veux l'utiliser
+        # EvaluateFolder(dossier_test=dossier_test, device=device,model_path=modele_perso)
 
 if __name__ == "__main__":
     main()
-

@@ -1,0 +1,2 @@
+Famille,Modele,Zoom,Dimension,IoU_Seuil,Nb_Images,SQ,DQ,PQ,TP,FP,FN,Precision,Recall,F1_Score
+StarDist,StarDist_Baseline_PUMA,puma,1024,0.5,22,82.19,83.72,68.93,7527,607,2057,92.54,78.54,84.96
